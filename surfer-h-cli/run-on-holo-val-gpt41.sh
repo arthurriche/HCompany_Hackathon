@@ -16,6 +16,26 @@ uv sync
 export API_KEY_LOCALIZATION="$HAI_API_KEY"
 export API_KEY_NAVIGATION="$HAI_API_KEY"
 
+# Ensure the Surfer H sources are importable even when .pth files are skipped
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+PYTHON_EXTRA_PATHS=(
+  "$SCRIPT_DIR/src"
+  "$SCRIPT_DIR"
+)
+for extra_path in "${PYTHON_EXTRA_PATHS[@]}"; do
+  case ":${PYTHONPATH:-}:" in
+    *":$extra_path:"*) ;;
+    *)
+      if [[ -z "${PYTHONPATH:-}" ]]; then
+        PYTHONPATH="$extra_path"
+      else
+        PYTHONPATH="$PYTHONPATH:$extra_path"
+      fi
+      ;;
+  esac
+done
+export PYTHONPATH
+
 # Task configuration
 DEFAULT_TASK="Explore H Company's website to discover their recent blog posts, click on the latest post and read to the bottom of the page. Summarize the interesting findings and explain why they're significant for the AI and automation industry."
 DEFAULT_URL="https://www.hcompany.ai"
