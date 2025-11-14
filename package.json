@@ -27,7 +27,7 @@
       "properties": {
         "surferH.repoPath": {
           "type": "string",
-          "default": "/Users/nikitadmitrieff/Desktop/Projects/coding/S/testing/surfer-h-cli",
+          "default": "/Users/nikitadmitrieff/Desktop/Projects/coding/S/testing/HCompany_Hackathon/surfer-h-cli",
           "description": "Absolute path to the Surfer-H CLI repository (where run-on-holo.sh lives)."
         },
         "surferH.command": {
