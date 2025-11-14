@@ -52,7 +52,7 @@
         },
         "surferH.defaultTask": {
           "type": "string",
-          "default": "You are auditing a developer's local web app at {{URL}}. {{FOCUS_SECTION}}\nOpen each main navigation tab or screen at least once, exercise a couple of obvious interactions on every section you visit, and then stop the run after you have inspected the core flows. Capture concrete UI/UX opportunities without looping indefinitely.\n\nOutput ONLY a markdown report between lines `=== FEEDBACK START ===` and `=== FEEDBACK END ===`. Structure the report with sections: Overview, Key Screens, Detailed Findings (numbered list with Issue · Impact · Recommendation for each), Accessibility, Performance (observed), Console Errors, Broken Links, Suggestions, Next Steps. Reference the exact UI elements (text, selectors, or URLs) so the dev can find them quickly, and keep the report under 300 lines while remaining highly specific.",
+          "default": "You are auditing a developer's local web app at {{URL}}. {{FOCUS_SECTION}}\nOpen each main navigation tab or screen at least once, exercise a couple of obvious interactions on every section you visit, and then stop the run after you have inspected the core flows.\n\nOutput ONLY a markdown report between lines `=== FEEDBACK START ===` and `=== FEEDBACK END ===`. Structure the report with sections (Overview, Work done, Detailed Findings, Bugs/broken links etc., Suggestions) and remain highly specific.",
           "description": "Template for the audit task. {{URL}} will be replaced with the target URL, {{FOCUS_SECTION}} expands to a full sentence when a focus is supplied, and {{FOCUS}} injects the raw focus text."
         },
         "surferH.feedbackFile": {
