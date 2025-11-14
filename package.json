@@ -1,0 +1,76 @@
+{
+  "name": "surferh-local-feedback",
+  "displayName": "Surfer-H Local Feedback",
+  "description": "Run Surfer-H against your localhost site and save a feedback.md report.",
+  "publisher": "your-name-or-org",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.93.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:surferH.runFeedback"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "surferH.runFeedback",
+        "title": "Surfer-H: Run Feedback on Localhost"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Surfer-H Settings",
+      "properties": {
+        "surferH.repoPath": {
+          "type": "string",
+          "default": "/Users/nikitadmitrieff/Desktop/Projects/coding/S/testing/surfer-h-cli",
+          "description": "Absolute path to the Surfer-H CLI repository (where run-on-holo.sh lives)."
+        },
+        "surferH.command": {
+          "type": "string",
+          "default": "bash ./run-on-holo-val-gpt41.sh",
+          "description": "Command to launch Surfer-H from repoPath. You can change this if your script is different."
+        },
+        "surferH.modelName": {
+          "type": "string",
+          "default": "",
+          "description": "Optional H model name (e.g., holo1.5). Passed via HAI_MODEL_NAME."
+        },
+        "surferH.modelUrl": {
+          "type": "string",
+          "default": "",
+          "description": "Optional model URL if you run a local server (vLLM). Passed via HAI_MODEL_URL."
+        },
+        "surferH.haiApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Optional H API key. Passed via HAI_API_KEY. Leave empty if fully local."
+        },
+        "surferH.defaultTask": {
+          "type": "string",
+          "default": "You are auditing a developer's local web app at {{URL}}. {{FOCUS_SECTION}}\nOpen each main navigation tab or screen at least once, exercise a couple of obvious interactions on every section you visit, and then stop the run after you have inspected the core flows. Capture concrete UI/UX opportunities without looping indefinitely.\n\nOutput ONLY a markdown report between lines `=== FEEDBACK START ===` and `=== FEEDBACK END ===`. Structure the report with sections: Overview, Key Screens, Detailed Findings (numbered list with Issue · Impact · Recommendation for each), Accessibility, Performance (observed), Console Errors, Broken Links, Suggestions, Next Steps. Reference the exact UI elements (text, selectors, or URLs) so the dev can find them quickly, and keep the report under 300 lines while remaining highly specific.",
+          "description": "Template for the audit task. {{URL}} will be replaced with the target URL, {{FOCUS_SECTION}} expands to a full sentence when a focus is supplied, and {{FOCUS}} injects the raw focus text."
+        },
+        "surferH.feedbackFile": {
+          "type": "string",
+          "default": "feedback.md",
+          "description": "Path (relative to workspace) for the feedback markdown file."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.0",
+    "@types/vscode": "^1.93.0",
+    "typescript": "^5.6.3"
+  }
+}
